@@ -9,6 +9,12 @@ local _ingressRouteRule = import '../../../lib/ingressroute_rule.libsonnet';
         name = 'notifications',
         image = "registry.digitalocean.com/cloudspree/notifications",
         tag = _versions.notifications,
+        envSecrets = [
+            "lightstep-token",
+        ],
+        envConfigMaps = [
+            "environment-common",
+        ],
     ),
     _service.new(
         name = 'notifications',

@@ -9,6 +9,12 @@ local _ingressRouteRule = import '../../../lib/ingressroute_rule.libsonnet';
         name = 'provider',
         image = "registry.digitalocean.com/cloudspree/provider",
         tag = _versions.provider,
+        envSecrets = [
+            "lightstep-token",
+        ],
+        envConfigMaps = [
+            "environment-common",
+        ],
     ),
     _service.new(
         name = 'provider',

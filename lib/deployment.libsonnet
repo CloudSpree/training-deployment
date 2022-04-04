@@ -2,6 +2,8 @@ local new = function(
     name = "",
     image = "",
     tag = "",
+    envSecrets = [],
+    envConfigMaps = [],
 ) {
     apiVersion: "apps/v1",
     kind: "Deployment",
@@ -45,6 +47,23 @@ local new = function(
                                 name: "http",
                             },
                         ],
+                        envFrom: []
+                          + [
+                                  {
+                                    secretRef: {
+                                      name: i,
+                                    },
+                                  }
+                                  for i in envSecrets
+                        ]
+                        + [
+                                {
+                                  configMapRef: {
+                                    name: i,
+                                  },
+                                }
+                                for i in envConfigMaps
+                              ]
                     },
                 ]
             }

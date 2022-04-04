@@ -4,6 +4,8 @@ local new = function(
     tag = "",
     activeService = "",
     previewService = "",
+    envSecrets = [],
+    envConfigMaps = [],
 ) {
     apiVersion: "argoproj.io/v1alpha1",
     kind: "Rollout",
@@ -48,6 +50,23 @@ local new = function(
                                 name: "http",
                             },
                         ],
+                        envFrom: []
+                          + [
+                                  {
+                                    secretRef: {
+                                      name: i,
+                                    },
+                                  }
+                                  for i in envSecrets
+                      ]
+                        + [
+                                {
+                                  configMapRef: {
+                                    name: i,
+                                  },
+                                }
+                                for i in envConfigMaps
+                              ]
                     },
                 ]
             }

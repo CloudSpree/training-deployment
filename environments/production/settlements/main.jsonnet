@@ -11,6 +11,12 @@ local _ingressRouteRule = import '../../../lib/ingressroute_rule.libsonnet';
         tag = _versions.settlements,
         activeService = "settlements",
         previewService = "settlements-preview",
+        envSecrets = [
+            "lightstep-token",
+        ],
+        envConfigMaps = [
+            "environment-common",
+        ],
     ),
     _service.new(
         name = 'settlements',
