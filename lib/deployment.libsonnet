@@ -10,6 +10,11 @@ local new = function(
     },
     spec: {
         replicas: 1,
+        strategy: {
+            type: "RollingUpdate",
+            maxSurge: 1,
+            maxUnavailable: 0,
+        },
         selector: {
             matchLabels: {
                 app: name,
