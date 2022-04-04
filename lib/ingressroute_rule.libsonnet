@@ -1,12 +1,13 @@
 local new = function(
   hostname='',
+  pathPrefix='/',
   service='',
   port=80,
   scheme='http',
   middlewares=[],
             ) {
   kind: 'Rule',
-  match: std.format('Host(`%s`)', [hostname]),
+  match: std.format('Host(`%s`) && PathPrefix(`%s`)', [hostname, pathPrefix]),
   middlewares: [
     {
       name: i,
