@@ -12,8 +12,10 @@ local new = function(
         replicas: 1,
         strategy: {
             type: "RollingUpdate",
-            maxSurge: 1,
-            maxUnavailable: 0,
+            rollingUpdate: {
+                maxSurge: 1,
+                maxUnavailable: 0,
+            },
         },
         selector: {
             matchLabels: {
