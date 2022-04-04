@@ -22,7 +22,7 @@ local new = function(
                 },
             },
             spec: {
-                pullSecrets: [
+                imagePullSecrets: [
                     {
                         name: "docker-cfg",
                     },
