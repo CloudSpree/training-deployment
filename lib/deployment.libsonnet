@@ -41,6 +41,15 @@ local new = function(
                         name: "app",
                         image: image + ":" + tag,
                         imagePullPolicy: "Always",
+                        readinessProbe: {
+                            httpGet: {
+                                path: "/_health/ready",
+                                port: 8080,
+                            },
+                            initialDelaySeconds: 20,
+                            periodSeconds: 5,
+                            timeoutSeconds: 1,
+                        },
                         ports: [
                             {
                                 containerPort: 8080,
